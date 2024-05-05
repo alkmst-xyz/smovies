@@ -11,8 +11,14 @@ services:
       TZ: "Europe/Vienna"
     ports:
       - "5432:5432"
+    volumes:
+      - smovies-db-data:/var/lib/postgresql/data
     networks:
       - smovies_net
 
 networks:
   smovies_net:
+
+
+volumes:
+  smovies-db-data:

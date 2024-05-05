@@ -22,17 +22,11 @@ sudo dnf install postgresql
 
 ## Database
 
-### Download datasets
-
-```bash
-./db/download.sh
-```
-
 ### Migrations
 
 ```bash
 # start dev db
-docker compse -f compse.dev-db.yml up -d
+docker compose -f compose.dev-db.yml up -d
 
 # create migrations
 atlas migrate diff initial \
@@ -43,28 +37,38 @@ atlas migrate diff initial \
 
 # verify migrations manually
 
+# remove dev db
+docker compose -f compose.dev-db.yml down
+
 # apply migrations to productive db
-atlas migrate diff apply \
+atlas migrate apply \
     --dir "file://db/migrations" \
     --url "postgres://admin:admin@0.0.0.0:5432/postgres?sslmode=disable"
+```
 
-docker compse -f compse.dev-db.yml down --remove-orphans
+- After manually editing the contents of a newly created migration file, the checksums for the directory must be recalculated.
 
+```bash
 # manually update atlas hash
 atlas migrate hash --dir "file://db/migrations"
 ```
 
-### Copy data to Database
+### Download datasets
 
 ```bash
-# connect to db
-# psql "postgres://admin:admin@0.0.0.0:5432/postgres?sslmode=disable"
-
-# pipe command to psql
-cat ./db/init.sql | psql "postgres://admin:admin@0.0.0.0:5432/postgres?sslmode=disable"
+./db/download.sh
 ```
 
-- Takes about 15 min on my laptop. Output should look like this.
+### Copy data to Database
+
+- The downloaded data is in TSV format. This can be copied into the created tables using the psql `\copy` command. Takes about 15 min on my laptop.
+
+```bash
+# pipe copy commands to psql
+cat ./db/init.txt | psql "postgres://admin:admin@0.0.0.0:5432/postgres?sslmode=disable"
+```
+
+- After copying, the output should look something like this.
 
 ```
 COPY 48250053
