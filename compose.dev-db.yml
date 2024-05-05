@@ -10,4 +10,4 @@ services:
       POSTGRES_INITDB_ARGS: "--locale-provider=icu --icu-locale=en-US"
       TZ: "Europe/Vienna"
     ports:
-      - "5434":"5432"
+      - "5434:5432"
