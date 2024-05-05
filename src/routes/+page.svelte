@@ -1,15 +1,26 @@
-<script>
-	import Counter from './Counter.svelte';
-	import welcome from '$lib/images/svelte-welcome.webp';
-	import welcome_fallback from '$lib/images/svelte-welcome.png';
+<script lang="ts">
+	// import Counter from './Counter.svelte';
+	// import welcome from '$lib/images/svelte-welcome.webp';
+	// import welcome_fallback from '$lib/images/svelte-welcome.png';
+	import type { PageData } from './$types';
+	export let data: PageData;
 </script>
 
-<svelte:head>
+<!-- <svelte:head>
 	<title>Home</title>
 	<meta name="description" content="Svelte demo app" />
-</svelte:head>
+</svelte:head> -->
 
-<section>
+<div>
+	{#each data.titleBasic as item}
+		<p>{item.id}</p>
+		<p>{item.startYear}</p>
+		<p>{item.endYear}</p>
+		<p>{item.originalTitle}</p>
+		<p>{item.genres}</p>
+	{/each}
+</div>
+<!-- <section>
 	<h1>
 		<span class="welcome">
 			<picture>
@@ -26,9 +37,9 @@
 	</h2>
 
 	<Counter />
-</section>
+</section> -->
 
-<style>
+<!-- <style>
 	section {
 		display: flex;
 		flex-direction: column;
@@ -56,4 +67,4 @@
 		top: 0;
 		display: block;
 	}
-</style>
+</style> -->
