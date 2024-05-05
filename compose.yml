@@ -1,0 +1,18 @@
+services:
+  db:
+    container_name: smovies-db
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_DB: postgres
+      POSTGRES_PASSWORD: admin
+      LANG: en_US.utf8
+      POSTGRES_INITDB_ARGS: "--locale-provider=icu --icu-locale=en-US"
+      TZ: "Europe/Vienna"
+    ports:
+      - "5432:5432"
+    networks:
+      - smovies_net
+
+networks:
+  smovies_net:

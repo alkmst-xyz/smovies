@@ -1,0 +1,7 @@
+\copy smovies_imdb_title_akas (title_id,ordering,title,region,language,types,attributes,is_original_title) from './db/data/title.akas.tsv' with DELIMITER E'\t' NULL '\N' QUOTE E'\b' CSV HEADER;
+\copy smovies_imdb_title_basics (tconst,title_type,primary_title,original_title,is_adult,start_year,end_year,runtime_minutes,genres) from './db/data/title.basics.tsv' with DELIMITER E'\t' NULL '\N' QUOTE E'\b' CSV HEADER;
+\copy smovies_imdb_title_crew (tconst,directors,writers) from './db/data/title.crew.tsv' with DELIMITER E'\t' NULL '\N' CSV HEADER;
+\copy smovies_imdb_title_episode (tconst,parent_tconst,season_number,episode_number) from './db/data/title.episode.tsv' with DELIMITER E'\t' NULL '\N' CSV HEADER;
+\copy smovies_imdb_title_principals (tconst,ordering,nconst,category,job,characters) from './db/data/title.principals.tsv' with DELIMITER E'\t' NULL '\N' QUOTE E'\b' CSV HEADER;
+\copy smovies_imdb_title_ratings (tconst,average_rating,num_votes) from './db/data/title.ratings.tsv' with DELIMITER E'\t' NULL '\N' CSV HEADER;
+\copy smovies_imdb_name_basics (nconst,primary_name,birth_year,death_year,primary_profession,known_for_titles) from './db/data/name.basics.tsv' with DELIMITER E'\t' NULL '\N' CSV HEADER;
