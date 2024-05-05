@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS
   smovies_imdb_title_basics (
     id BIGINT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     tconst VARCHAR NOT NULL,
-	title_type VARCHAR NOT NULL,
+    title_type VARCHAR NOT NULL,
     primary_title VARCHAR NOT NULL,
     original_title VARCHAR NOT NULL,
     is_adult SMALLINT NOT NULL,

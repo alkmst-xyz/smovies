@@ -3,14 +3,14 @@ services:
     container_name: smovies-db
     image: postgres:16-alpine
     environment:
-      POSTGRES_USER: admin
-      POSTGRES_DB: postgres
-      POSTGRES_PASSWORD: admin
+      POSTGRES_USER: ${PGUSER:-admin}
+      POSTGRES_DB: ${PGDATABASE:-postgres}
+      POSTGRES_PASSWORD: ${PGPASSWORD:-admin}
       LANG: en_US.utf8
       POSTGRES_INITDB_ARGS: "--locale-provider=icu --icu-locale=en-US"
       TZ: "Europe/Vienna"
     ports:
-      - "5432:5432"
+      - "${PGPORT:-5432}:5432"
     volumes:
       - smovies-db-data:/var/lib/postgresql/data
     networks:
